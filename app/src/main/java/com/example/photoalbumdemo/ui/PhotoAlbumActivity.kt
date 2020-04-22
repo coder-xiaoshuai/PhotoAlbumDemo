@@ -17,6 +17,7 @@ import com.example.photoalbumdemo.bean.ItemMedia
 import com.example.photoalbumdemo.bean.MediaBucket
 import com.example.photoalbumdemo.utils.AlbumPhotoUtils
 import com.example.photoalbumdemo.viewmodel.PhotoAlbumViewModel
+import com.example.photoalbumdemo.views.FixedPopupWindow
 import kotlinx.android.synthetic.main.activity_album.*
 
 
@@ -51,7 +52,7 @@ class PhotoAlbumActivity : AppCompatActivity() {
         }
         //创建PopupWindow
         val contentView = LayoutInflater.from(this).inflate(R.layout.layout_popup_window, null)
-        popupWindow = PopupWindow(
+        popupWindow = FixedPopupWindow(
             contentView,
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
