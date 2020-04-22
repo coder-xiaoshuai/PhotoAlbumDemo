@@ -2,6 +2,7 @@ package com.example.photoalbumdemo.adapter
 
 import android.content.Context
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.example.photoalbumdemo.R
 import com.example.photoalbumdemo.bean.ItemMedia
 import com.example.photoalbumdemo.bean.MediaBucket
 import com.example.photoalbumdemo.bean.MediaType
+import java.io.File
 
 
 class PhotoAlbumAdapter(var context: Context, var itemMediaList: MutableList<ItemMedia>) :
@@ -46,7 +48,8 @@ class PhotoAlbumAdapter(var context: Context, var itemMediaList: MutableList<Ite
         var layoutParams = holder.itemView.layoutParams
         layoutParams.width = itemWidth
         layoutParams.height = itemWidth
-        Glide.with(context).load(itemMediaList[position].mediaPath).into(holder.imagePhoto)
+        Log.i("zs", "本地路径=${itemMediaList[position].mediaPath}")
+        Glide.with(context).load(File(itemMediaList[position].mediaPath)).into(holder.imagePhoto)
         if (itemMediaList[position].mediaType == MediaType.VIDEO) {
             holder.imageMediaType.visibility = View.VISIBLE
         } else {
