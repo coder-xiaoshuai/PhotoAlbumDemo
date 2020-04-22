@@ -48,8 +48,8 @@ class PhotoAlbumAdapter(var context: Context, var itemMediaList: MutableList<Ite
         var layoutParams = holder.itemView.layoutParams
         layoutParams.width = itemWidth
         layoutParams.height = itemWidth
-        Log.i("zs", "本地路径=${itemMediaList[position].mediaPath}")
-        Glide.with(context).load(File(itemMediaList[position].mediaPath)).into(holder.imagePhoto)
+        Glide.with(context).load(getRealUrl(itemMediaList[position].mediaPath))
+            .into(holder.imagePhoto)
         if (itemMediaList[position].mediaType == MediaType.VIDEO) {
             holder.imageMediaType.visibility = View.VISIBLE
         } else {
@@ -94,5 +94,13 @@ class PhotoAlbumAdapter(var context: Context, var itemMediaList: MutableList<Ite
         var imagePhoto: ImageView = itemView.findViewById<ImageView>(R.id.image)
         var imageMediaType: ImageView = itemView.findViewById<ImageView>(R.id.media_type)
         var imageSelected: ImageView = itemView.findViewById(R.id.image_selected)
+    }
+
+    fun getRealUrl(string: String): String {
+        val file = File(string)
+        if (string.isNotEmpty() && file.exists()) {
+            return file.toString()
+        }
+        return string
     }
 }
