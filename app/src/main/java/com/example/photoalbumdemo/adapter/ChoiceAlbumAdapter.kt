@@ -1,5 +1,6 @@
 package com.example.photoalbumdemo.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.photoalbumdemo.bean.MediaBucket
 
 class ChoiceAlbumAdapter(var context: Context, var mediaBucketList: MutableList<MediaBucket>) :
     BaseAdapter() {
+    @SuppressLint("SetTextI18n")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var viewHolder: ItemViewHolder
         var view: View
@@ -27,7 +29,7 @@ class ChoiceAlbumAdapter(var context: Context, var mediaBucketList: MutableList<
             view = convertView
             viewHolder = view.tag as ItemViewHolder
         }
-        if (mediaBucketList[position].mediaList != null && mediaBucketList[position].mediaList.size > 0) {
+        if (mediaBucketList[position].mediaList.size > 0) {
             Glide.with(context).load(mediaBucketList[position].mediaList[0].mediaPath)
                 .into(viewHolder.imageFirst)
         }
@@ -37,7 +39,7 @@ class ChoiceAlbumAdapter(var context: Context, var mediaBucketList: MutableList<
     }
 
     override fun getItem(position: Int): Any {
-        return mediaBucketList[position]
+        return this.mediaBucketList[position]
     }
 
     override fun getItemId(position: Int): Long {
@@ -45,7 +47,7 @@ class ChoiceAlbumAdapter(var context: Context, var mediaBucketList: MutableList<
     }
 
     override fun getCount(): Int {
-        return mediaBucketList.size
+        return this.mediaBucketList.size
     }
 
     class ItemViewHolder {

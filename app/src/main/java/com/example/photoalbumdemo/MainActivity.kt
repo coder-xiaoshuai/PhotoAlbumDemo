@@ -44,11 +44,9 @@ class MainActivity : AppCompatActivity() {
                 //手动申请权限
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(
-                        Manifest.permission.CAMERA,
+                    arrayOf(Manifest.permission.CAMERA,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    ),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE),
                     PERMISSION_REQUEST_CODE
                 )
                 return
@@ -58,11 +56,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, INTENT_REQUEST_CODE)
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PERMISSION_REQUEST_CODE -> {
@@ -85,11 +79,9 @@ class MainActivity : AppCompatActivity() {
                             .toString()
                 }
             }
-            else -> {
+            else                -> {
                 //暂不做处理
             }
         }
     }
-
-
 }
